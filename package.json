@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "scripts": {
     "start": "node ./app.js",
-    "test": "npm run test-spec",
-    "test-spec": "node_modules/.bin/mocha 'test/*.test.js' --reporter mocha-junit-reporter"
+    "test": "npm run test-cli",
+    "test-junit": "node_modules/.bin/mocha 'test/*.test.js' --reporter mocha-junit-reporter",
+    "test-cli": "node_modules/.bin/mocha 'test/*.test.js'"
   },
   "dependencies": {
     "ws": "*",

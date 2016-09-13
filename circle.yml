@@ -8,6 +8,6 @@ dependencies:
 
 test:
   override:
-    - npm test:
+    - npm run test-junit:
         environment:
           MOCHA_FILE: $CIRCLE_TEST_REPORTS/junit/test-results.xml
