@@ -23,8 +23,8 @@ describe('Websocket Server', function() {
                 // if (message !== data) return;
                 assert.equal(data, message);
                 done();
-                ws.close();
             });
+            ws.close();
         });
     });
 });
