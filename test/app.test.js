@@ -21,7 +21,7 @@ describe('Websocket Server', function() {
   it('should echo a message', function(done) {
     var ws = new webSocket(url);
     ws.on('open', function () {
-      var data = '{"hello":"world"}';
+      var data = 'hello world';
       ws.send(data);
       ws.on('message', function(message) {
         assert.equal(data, message);
