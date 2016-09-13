@@ -8,9 +8,7 @@
     "test-cli": "node_modules/.bin/mocha 'test/*.test.js'"
   },
   "dependencies": {
-    "ws": "*",
-    "request": "*",
-    "bunyan": "*"
+    "ws": "^1.1.1"
   },
   "devDependencies": {
     "mocha": "^3.0.2",
