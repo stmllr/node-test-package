@@ -1,8 +1,11 @@
+process.env.PORT = randomPort();
+process.env.HOST = '127.0.0.1';
+
 var assert = require('assert');
 var webSocket = require('ws');
 var webSocketServer = require('../app.js');
 
-var url = 'ws://127.0.0.1:3002';
+var url = 'ws://' + process.env.HOST + ':' + process.env.PORT;
 
 describe('Websocket Server', function() {
   it('should accept opening and closing a connection', function(done) {
@@ -28,3 +31,7 @@ describe('Websocket Server', function() {
     });
   });
 });
+
+function randomPort() {
+    return Math.floor(Math.random() * (65535 - 3000 + 1)) + 3000;
+}
