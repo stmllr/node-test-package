@@ -8,7 +8,10 @@ var myServer = new WebSocketServer({ port: port, host: host });
 
 myServer.on('connection', function (socket) {
     if (socket.readyState === WebSocket.OPEN) {
-        socket.send('hello');
+        var welcomeMessages = ['hello', 'dear friend', 'welcome'];
+        for(var i=0; i <= Math.floor(Math.random() * 3); i++) {
+            socket.send(welcomeMessages[i]);
+        }
     }
     socket.on('message', function (message) {
         socket.send(message);
