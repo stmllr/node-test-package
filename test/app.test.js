@@ -13,19 +13,24 @@ describe('Websocket Server', function() {
         ws.on('open', function () {
             var data = 'This is a message';
             ws.send(data);
+            var counter = 0;
             ws.on('message', function(message) {
-                /** @FIXME message event is triggered twice. We should ignore 'hello'.
-                 * 
-                 * The following line is a hack, but comes with a test smell:
-                 * If the assertion is skipped if message does not match data,
-                 * then the assertion cannot fail by definition.
-                 */
-                // if (message !== data) return;
-                assert.equal(data, message);
-                done();
+                counter++;
+                if (counter === 1) {
+                    // first time the server sends a hello (this is not a required test)
+                    assert.equal('hello', message);
+                } else {
+                    // message should be the same as sent
+                    assert.equal(data, message);
+                }
             });
-            ws.close();
+            setTimeout(function(){
+                assert.equal(counter, 2, 'Server did not respond 2 times in 500 ms')
+                   done();
+                   ws.close();
+            },500);
         });
+
     });
 });
 
