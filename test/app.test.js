@@ -7,17 +7,30 @@ var webSocketServer = require('../app.js');
 
 var url = 'ws://' + process.env.HOST + ':' + process.env.PORT;
 
+function waitUntil (predicate, cb) {
+    let received = [];
+    return message => {
+        received.push(message);
+        if (predicate(received.slice())) {
+            cb(received);
+        }
+    };
+}
+
 describe('Websocket Server', function() {
     it('should echo a message', function(done) {
         var ws = new webSocket(url);
+        var data = 'This is a message';
         ws.on('open', function () {
-            var data = 'This is a message';
+            ws.on('message', waitUntil(
+                messages => messages.pop() === data,
+                messages => {
+                    assert.equal(messages.pop(), data);
+                    ws.close();
+                    done();
+                })
+            );
             ws.send(data);
-            ws.on('message', function(message) {
-                assert.equal(data, message);
-                done();
-            });
-            ws.close();
         });
     });
 });
