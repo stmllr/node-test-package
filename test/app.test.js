@@ -11,7 +11,7 @@ describe('Websocket Server', function() {
     it('should echo a message', function(done) {
         var ws = new webSocket(url);
         ws.on('open', function () {
-            var data = 'This is a message';
+            var data = 'unique_message_f1ea7ee5-7a36-4586-a799-a7ae50fe6c55';
             ws.send(data);
             ws.on('message', function(message) {
                 assert.equal(data, message);
