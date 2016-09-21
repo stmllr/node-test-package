@@ -16,8 +16,8 @@ describe('Websocket Server', function() {
             ws.on('message', function(message) {
                 assert.equal(data, message);
                 done();
+                ws.close();
             });
-            ws.close();
         });
     });
 });
