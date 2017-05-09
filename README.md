@@ -6,6 +6,7 @@ Runs a basic websocket service.
 
 ```
 git clone https://github.com/stmllr/node-test-package.git
+cd node-test-package/
 npm install
 ```
 
@@ -31,6 +32,7 @@ npm test
 
 ```
 git clone https://github.com/stmllr/node-test-package.git
+cd node-test-package/
 docker run -it --rm --name node-test-app -v "$PWD":/usr/src/app -w /usr/src/app node:6-alpine yarn install
 ```
 
